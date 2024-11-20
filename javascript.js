@@ -10,6 +10,9 @@ function getComputerChoice(){
     // console.log(choice)
 }
 
-// function getHumanChoice(){
-    // 
-// }
+function getHumanChoice(){
+    let ans= prompt("Enter Your Choice: (Rock or Paper of Sessior)");
+    if(ans!="Rock"&&ans!="Paper"&&ans!="Sessior")
+        return -1;
+    return ans;
+}

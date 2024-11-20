@@ -1,4 +1,3 @@
-console.log("Hello World!")
 function getComputerChoice(){
     let choice=Math.floor(Math.random() * 10)%3;
     switch(choice)
@@ -16,3 +15,7 @@ function getHumanChoice(){
         return -1;
     return ans;
 }
+
+let humanScore=0;
+let computerScore=0;
+

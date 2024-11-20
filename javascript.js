@@ -1,1 +1,15 @@
 console.log("Hello World!")
+function getComputerChoice(){
+    let choice=Math.floor(Math.random() * 10)%3;
+    switch(choice)
+    {
+        case 0:return "Rock";break;
+        case 1:return "Paper";break;
+        case 2:return "Sessior";break;
+    }
+    // console.log(choice)
+}
+
+// function getHumanChoice(){
+    // 
+// }

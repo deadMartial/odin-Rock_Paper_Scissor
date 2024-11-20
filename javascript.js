@@ -38,24 +38,30 @@ function playRound(humanChoice, computerChoice){
 
 }
 
+function playGame(){
+    let round=parseInt(prompt("How many round will you like to play?"));
+    for(let i=0;i< round;i++){
+        console.log("Round", i+1);
+        playRound(getHumanChoice(), getComputerChoice())
+    }
+}
+
+function showResult(){
+    if(humanScore>computerScore){
+        console.log("You won!!!:  ",humanScore," to ",computerScore);
+    }
+    else if(humanScore<computerScore)
+    {
+        console.log("You lost!!!:  ",humanScore," to ",computerScore);
+    }
+    else{
+        console.log("It's a draw: ",humanScore," to ",computerScore);
+    }
+}
+
 let humanScore=0;
 let computerScore=0;
 console.log("Initializing -> Rock-Paper-Sessior !!!");
-let round=parseInt(prompt("How many round will you like to play?"));
-// console.log(round);
 
-
-for(let i=0;i< round;i++){
-    console.log("Round", i+1);
-    playRound(getHumanChoice(), getComputerChoice())
-}
-if(humanScore>computerScore){
-    console.log("You won!!!:  ",humanScore," to ",computerScore);
-}
-else if(humanScore<computerScore)
-{
-    console.log("You lost!!!:  ",humanScore," to ",computerScore);
-}
-else{
-    console.log("It's a draw: ",humanScore," to ",computerScore);
-}
+playGame();
+showResult();

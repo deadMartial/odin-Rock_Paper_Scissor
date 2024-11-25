@@ -42,7 +42,7 @@ function cleanUp(){
     {
         div.textContent="You lost!!!:  "+humanScore+" to "+computerScore;
     }
-    div2.textContent="";
+    div2.textContent="Game is automaticaly reset. Press the button to play again";
     humanScore=computerScore=0;
 }
 

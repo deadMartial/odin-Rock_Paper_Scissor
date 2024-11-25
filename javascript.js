@@ -2,66 +2,71 @@ function getComputerChoice(){
     let choice=Math.floor(Math.random() * 10)%3;
     switch(choice)
     {
-        case 0:return "rock";break;
-        case 1:return "paper";break;
-        case 2:return "sessior";break;
+        case 0:return "ROCK";break;
+        case 1:return "PAPER";break;
+        case 2:return "SESSIOR";break;
     }
     // console.log(choice)
 }
 
-function getHumanChoice(){
-    let ans= prompt("Enter Your Choice: (Rock or Paper of Sessior)");console.log(ans);
-    ans=ans.toLowerCase();console.log(ans);
-    if(ans!="rock"&&ans!="paper"&&ans!="sessior")
-        // console.log(ans);
-        return -1;
-    return ans;
-}
-
 function playRound(humanChoice, computerChoice){
-    if(humanChoice==-1){
-        console.log("Invalid Input. Automatic Defeat for this round");
-        computerScore++;
+    if(humanChoice===computerChoice){
+        div.textContent=humanChoice+ " Draws "+ computerChoice;
     }
-    else if(humanChoice===computerChoice){
-        console.log(humanChoice, " Draws ", computerChoice);
-    }
-    else if( (humanChoice=="rock" && computerChoice=="paper") || (humanChoice=="paper" && computerChoice=="sessior") || (humanChoice=="sessior" && computerChoice=="rock") ){
-        console.log(humanChoice," loses to ", computerChoice);
+    else if( (humanChoice=="ROCK" && computerChoice=="PAPER") || (humanChoice=="PAPER" && computerChoice=="SESSIOR") || (humanChoice=="SESSIOR" && computerChoice=="ROCK") ){
+        div.textContent=humanChoice+" loses to "+ computerChoice;
         computerScore++;
     }
     else{
-        console.log(humanChoice," wins against ", computerChoice);
+        div.textContent=humanChoice+" wins against "+ computerChoice;
         humanScore++;
     }
-    
+    div2.textContent="Player: "+humanScore+" & Computer: "+computerScore;
+
+    if(humanScore===5) {
+        cleanUp();
+    }
+    else if(computerScore===5) {
+        cleanUp();
+    }
 
 }
 
-function playGame(){
-    let round=parseInt(prompt("How many round will you like to play?"));
-    for(let i=0;i< round;i++){
-        console.log("Round", i+1);
-        playRound(getHumanChoice(), getComputerChoice())
-    }
-}
 
-function showResult(){
-    if(humanScore>computerScore){
-        console.log("You won!!!:  ",humanScore," to ",computerScore);
+
+function cleanUp(){
+    if(humanScore===round){
+        div.textContent="You won!!!:  "+humanScore+" to "+computerScore;
     }
-    else if(humanScore<computerScore)
+    else if(computerScore===round)
     {
-        console.log("You lost!!!:  ",humanScore," to ",computerScore);
+        div.textContent="You lost!!!:  "+humanScore+" to "+computerScore;
     }
-    else{
-        console.log("It's a draw: ",humanScore," to ",computerScore);
-    }
+    div2.textContent="";
+    humanScore=computerScore=0;
 }
 
+
+const round=5;
 let humanScore=0;
 let computerScore=0;
-console.log("Initializing -> Rock-Paper-Sessior !!!");
+const div2=document.querySelector("#two")
+const div=document.querySelector("div");
+div.textContent="Initialized -> Rock-Paper-Sessior !!!";
+const buttons=document.querySelectorAll("button");
 
-playGame();
-showResult();
+buttons.forEach((button)=>{
+    // console.log(button);
+    button.addEventListener("click", respondClick);
+});
+
+
+// playGame();
+// showResult();
+
+
+function respondClick(e) {
+    // alert(e.pressure);
+    console.log(e.target.textContent);
+    playRound(e.target.textContent, getComputerChoice());
+}
